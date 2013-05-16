@@ -1,13 +1,14 @@
-﻿function TennisGame($scope) {
+﻿
+function TennisGame() {
 
-    $scope.output = [
-        {text:'Game started'}
-    ];
+    //$scope.output = [
+    //    {text:'Game started'}
+    //];
 
-    var FirstPlayerScore = 0;
-    var SecondPlayerScore = 0;
+    this.FirstPlayerScore = 0;
+    this.SecondPlayerScore = 0;
 
-    Begin();
+   // Begin();
 
     function Begin() {
         while (CheckForGameStatus()) {
@@ -16,25 +17,25 @@
         }
     }
 
-    function pickRandomScorer() {
+    this.pickRandomScorer = function () {
         var scorer = Math.round((Math.random() * 1) + 1);
         if (scorer == 1) {
-            playerOnePoint();
+            this.playerOnePoint();
         }
         else if (scorer == 2) {
-            playerTwoPoint();
+            this.playerTwoPoint();
         }
     }
 
-    function playerOnePoint() {
-        FirstPlayerScore++;
+    this.playerOnePoint = function() {
+        this.FirstPlayerScore++;
     }
 
-    function playerTwoPoint() {
-        SecondPlayerScore++;
+    this.playerTwoPoint = function() {
+        this.SecondPlayerScore++;
     }
 
-    function TranslatePoint(score) {
+    this.TranslatePoint = function(score) {
         switch (score) {
             case 0:
                 return 0;
@@ -47,40 +48,39 @@
         }
     }
 
-    function TranslateScore() {
-        if (FirstPlayerScore >= 4 || SecondPlayerScore >= 4)
+    this.TranslateScore = function () {
+        if (this.FirstPlayerScore >= 4 || this.SecondPlayerScore >= 4)
         {
-            if (FirstPlayerScore == SecondPlayerScore) {
-                return { text: 'Deuce' }
+            if (this.FirstPlayerScore == this.SecondPlayerScore) {
+                return 'Deuce'
             }
 
-            if ((FirstPlayerScore >= SecondPlayerScore + 2)) {
-                return { text: 'First Player Wins' }
+            if ((this.FirstPlayerScore >= this.SecondPlayerScore + 2)) {
+                return 'First Player Wins'
             }
 
-            if (SecondPlayerScore >= FirstPlayerScore + 2) {
-                return { text: 'Second Player Wins' }
+            if (this.SecondPlayerScore >= this.FirstPlayerScore + 2) {
+                return 'Second Player Wins'
             }
 
-            if (SecondPlayerScore > FirstPlayerScore) {
-                return { text: 'Advantage Second Player' }
+            if (this.SecondPlayerScore > this.FirstPlayerScore) {
+                return 'Advantage Second Player'
             }
 
-            if (SecondPlayerScore < FirstPlayerScore) {
-                return { text: 'Advantage First Player' }
+            if (this.SecondPlayerScore < this.FirstPlayerScore) {
+                return 'Advantage First Player' 
             }
         }
-        else if (FirstPlayerScore == 3 && SecondPlayerScore == 3) {
-                return { text: 'Deuce' }
+        else if (this.FirstPlayerScore == 3 && this.SecondPlayerScore == 3) {
+                return 'Deuce'
         }
 
-        return { text: 'Player One Score:' + TranslatePoint(FirstPlayerScore) + ' Player Two Score: ' + TranslatePoint(SecondPlayerScore) }
+        return 'Player One Score:' + this.TranslatePoint(this.FirstPlayerScore) + ' Player Two Score: ' + this.TranslatePoint(this.SecondPlayerScore)
     }
 
-    function CheckForGameStatus() {
-        if (FirstPlayerScore >= 4 || SecondPlayerScore >= 4) {
-            if ((FirstPlayerScore >= SecondPlayerScore + 2) || (SecondPlayerScore >= FirstPlayerScore + 2)) {
-                TranslateScore();
+    this.CheckForGameStatus = function () {
+        if (this.FirstPlayerScore >= 4 || this.SecondPlayerScore >= 4) {
+            if ((this.FirstPlayerScore >= this.SecondPlayerScore + 2) || (this.SecondPlayerScore >= this.FirstPlayerScore + 2)) {
                 return false;
             }
         }
