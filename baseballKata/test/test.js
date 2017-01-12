@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var baseball = require('../baseballKata/baseball.js');
+var baseball = require('../baseball.js');
 
 describe('Baseball', function () {
     beforeEach(function(){
