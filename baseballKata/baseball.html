@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <script src="baseball.js"></script>
+    <title></title>
+</head>
+<body>
+    <script>
+       var game = new baseball();
+       var wins = {reds:0,cubs:0,tie:0};
+       var x=190;
+       while (x--){
+            var winner = game.play();
+            if (winner == 1){
+                wins.reds += 1;
+            }
+            else if (winner==2){
+                wins.cubs += 1;
+            }
+            else{
+                wins.tie +=1;
+            }
+       }
+       console.log(wins);
+       console.log(game.teams[0].lineup)
+       console.log(game.teams[1].lineup)
+    </script>
+</body>
+</html>
